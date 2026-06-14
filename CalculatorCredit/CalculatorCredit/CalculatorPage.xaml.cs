@@ -20,17 +20,19 @@ namespace CalculatorCredit
             // задаем максимальное и начальное значение ползунка
             RateSlider.Maximum = 30;
             RateSlider.Value = 20;
-            // встанавливаем минимальное значение ползунка
+            // устанавливаем минимальное значение ползунка
             RateSlider.Minimum = 1;
             // выбираем первый тип платежа по умолчанию
             PaymentTypePicker.SelectedIndex = 0;
         }
+
         // обработчик изменения значения ползунка процентной ставки
         private void SliderValueChanged(object sender, ValueChangedEventArgs e)
         {
             RateLabel.Text = $"{Math.Round(e.NewValue)}%";
             CalculateLoan(null, null);
         }
+
         // основной метод расчета кредита
         private void CalculateLoan(object sender, EventArgs e)
         {
@@ -84,12 +86,20 @@ namespace CalculatorCredit
                 OverpaymentLabel.Text = $"Переплата: {overpayment:F2}";
             }
         }
+
         // очистка полей с результатами
         private void ClearResults()
         {
             MonthlyPaymentLabel.Text = "Ежемесячный платеж: ";
             TotalSumLabel.Text = "Общая сумма: ";
             OverpaymentLabel.Text = "Переплата: ";
+        }
+
+        // переход на 3 экран (RatesPage) с передачей максимального значения слайдера
+        private async void OnGoToRatesClicked(object sender, EventArgs e)
+        {
+            double maxRateValue = RateSlider.Maximum; // максимальное значение = 30
+            await Navigation.PushAsync(new RatesPage(maxRateValue));
         }
     }
 }

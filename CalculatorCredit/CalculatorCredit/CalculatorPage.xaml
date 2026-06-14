@@ -26,6 +26,9 @@
                 <Label x:Name="TotalSumLabel" Text="Общая сумма: ...." />
                 <Label x:Name="OverpaymentLabel" Text="Переплата: ...." />
             </StackLayout>
+            <Button Text="Курсы валют" Clicked="OnGoToRatesClicked" 
+                    BackgroundColor="#3498db" TextColor="#ffffff" 
+                    FontSize="16" HeightRequest="50" Margin="0,20,0,0"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

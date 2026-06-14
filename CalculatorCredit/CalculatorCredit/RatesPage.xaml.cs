@@ -12,10 +12,20 @@ namespace CalculatorCredit
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RatesPage : ContentPage
     {
-        public RatesPage()
+        private double _maxSliderValue; // поле для хранения максимального значения слайдера
+
+        // конструктор принимает максимальное значение слайдера с CalculatorPage
+        public RatesPage(double maxSliderValue)
         {
             InitializeComponent();
-            CurrencyDatePicker.Date = new DateTime(2026, 6, 11);
+            _maxSliderValue = maxSliderValue;
+        }
+
+        // обработчик нажатия кнопки Static
+        private async void OnStaticClicked(object sender, EventArgs e)
+        {
+            // показать максимальное значение из слайдера
+            await DisplayAlert("Static", $"Максимальное значение слайдера: {_maxSliderValue}%", "OK");
         }
     }
 }
